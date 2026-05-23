@@ -1,7 +1,14 @@
-import type { NextConfig } from "next";
+import withPWA from "next-pwa";
 
-const nextConfig: NextConfig = {
-  /* config options here */
+const withPWAModule = withPWA({
+  dest: "public",
+  register: true,
+  skipWaiting: true,
+});
+
+const nextConfig = {
+  reactStrictMode: true,
+  turbopack: {}, // 👈 重點：避免 Next 16 error
 };
 
-export default nextConfig;
+export default withPWAModule(nextConfig);
